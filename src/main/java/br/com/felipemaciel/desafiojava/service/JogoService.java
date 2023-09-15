@@ -1,6 +1,7 @@
 package br.com.felipemaciel.desafiojava.service;
 
 import br.com.felipemaciel.desafiojava.entity.Jogo;
+import br.com.felipemaciel.desafiojava.response.IniciativaResponse;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,4 +17,6 @@ public interface JogoService {
     public Jogo updateJogo(Long id, Jogo jogo);
 
     public void deleteJogo(Long id);
+
+    public IniciativaResponse iniciativa(Long idJogo);
 }

@@ -4,14 +4,13 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "personagens")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder //precisa do AllArgsConstructor
 @Data
 public class Personagem {
 
@@ -26,7 +25,7 @@ public class Personagem {
     private Integer vida;
 
     @NotNull
-    private Integer força;
+    private Integer forca;
 
     @NotNull
     private Integer defesa;
@@ -42,6 +41,15 @@ public class Personagem {
     @Min(2)
     private Integer facesDoDado;
 
-    @NotBlank
+    @NotNull
+    private String classe;
+
+    @NotNull
     private Long idJogo;
+
+    @NotNull
+    private Long idDono;
+
+    private Integer ordem;
+
 }

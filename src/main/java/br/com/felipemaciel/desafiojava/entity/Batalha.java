@@ -15,6 +15,9 @@ public class Batalha {
     @Column(name = "id_jogo")
     private Long idJogo;
 
+    @Column(name = "turno")
+    private int turno;
+
     @Column(name = "id_atacante")
     private Long idAtacante;
 
@@ -30,6 +33,4 @@ public class Batalha {
     @Column(name = "dano")
     private Integer dano;
 
-    @Column(name = "vencedor")
-    private Long idVencedor;
 }

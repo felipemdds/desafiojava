@@ -22,4 +22,10 @@ public class Jogo {
 
     @Column(name = "turno")
     private Integer turno;
+
+    @Column(name = "ordem")
+    private Integer ordem;
+
+    @Column(name = "idPersonagemIniciativa")
+    private Long idPersonagemIniciativa;
 }

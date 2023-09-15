@@ -1,5 +1,6 @@
 package br.com.felipemaciel.desafiojava.controller;
 
+import br.com.felipemaciel.desafiojava.request.AtribuiPersonagemRequest;
 import br.com.felipemaciel.desafiojava.entity.Personagem;
 import br.com.felipemaciel.desafiojava.service.PersonagemService;
 import br.com.felipemaciel.desafiojava.service.impl.PersonagemServiceImpl;
@@ -12,17 +13,18 @@ import java.util.List;
 public class PersonagemController {
 
     @Autowired
-    private PersonagemService personagemService;
+    private PersonagemServiceImpl personagemService;
 
     @GetMapping("/personagens")
-    public List<Personagem> getPersonagens() {
-        return personagemService.getPersonagens();
+    public List<Personagem> getPersonagens(Long idJogo) {
+        return personagemService.getPersonagens(idJogo);
     }
 
     @GetMapping("/personagens/{id}")
     public Personagem getPersonagemById(@PathVariable Long id) {
         return personagemService.getPersonagemById(id);
     }
+
 
     @PostMapping("/personagens")
     public Personagem createPersonagem(@RequestBody Personagem personagem) {
@@ -39,5 +41,8 @@ public class PersonagemController {
         personagemService.deletePersonagem(id);
     }
 
-
+    @PostMapping("/personagens/escolher")
+    public Personagem escolherPersonagem(@RequestBody AtribuiPersonagemRequest atribuiPersonagemRequest) {
+        return personagemService.pegaPersonagem(atribuiPersonagemRequest);
+    }
 }

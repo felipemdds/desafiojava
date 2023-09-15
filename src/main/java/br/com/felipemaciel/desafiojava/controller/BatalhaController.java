@@ -1,7 +1,11 @@
 package br.com.felipemaciel.desafiojava.controller;
 
 import br.com.felipemaciel.desafiojava.entity.Batalha;
+import br.com.felipemaciel.desafiojava.request.AtaqueRequest;
+import br.com.felipemaciel.desafiojava.request.BatalhaRequest;
+import br.com.felipemaciel.desafiojava.response.AtaqueResponse;
 import br.com.felipemaciel.desafiojava.service.BatalhaService;
+import br.com.felipemaciel.desafiojava.service.impl.BatalhaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +15,7 @@ import java.util.List;
 public class BatalhaController {
 
     @Autowired
-    private BatalhaService batalhaService;
+    private BatalhaServiceImpl batalhaService;
 
     @GetMapping("/batalhas")
     public List<Batalha> getBatalhas() {
@@ -24,7 +28,7 @@ public class BatalhaController {
     }
 
     @PostMapping("/batalhas")
-    public Batalha createBatalha(@RequestBody Batalha batalha) {
+    public Batalha createBatalha(@RequestBody BatalhaRequest batalha) {
         return batalhaService.createBatalha(batalha);
     }
 
@@ -36,5 +40,19 @@ public class BatalhaController {
     @DeleteMapping("/batalhas/{id}")
     public void deleteBatalha(@PathVariable Long id) {
         batalhaService.deleteBatalha(id);
+    }
+
+    @PostMapping("/batalhas/ataque")
+    public AtaqueResponse ataque (@RequestBody AtaqueRequest ataqueRequest){
+        return batalhaService.ataque(ataqueRequest.getIdJogo(), ataqueRequest.getIdAtacante(), ataqueRequest.getIdOponente(), ataqueRequest.getDado());
+    }
+
+    @PostMapping("/batalhas/calcula_ataque")
+    public Integer calculaAtaque (@RequestBody AtaqueRequest ataqueRequest){
+        return batalhaService.calculaDefesa(ataqueRequest.getIdOponente(), ataqueRequest.getDado());
+    }
+    @PostMapping("/batalhas/calcula_defesa")
+    public Integer calculaDefesa (@RequestBody AtaqueRequest ataqueRequest){
+        return batalhaService.calculaDefesa(ataqueRequest.getIdOponente(), ataqueRequest.getDado());
     }
 }
